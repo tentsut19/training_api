@@ -15,6 +15,5 @@ upload_video/
 upload_pdf/
 pdf/guard/
 pdf/
-storage/
 composer.lock
 .vscode
