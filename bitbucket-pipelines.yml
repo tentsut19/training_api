@@ -1,0 +1,42 @@
+# Template PHP Build
+
+# This template allows you to validate your PHP application.
+# The workflow allows running tests and code linting on the default branch.
+
+pipelines:
+  default:
+    - step:
+        image: php:8.1.12
+        name: "Build"
+        script:
+          - echo "Build composer!"
+          # - apt-get update && apt-get install -y unzip && apt install php-zip
+          - apt-get update && apt-get install -y libzip-dev && docker-php-ext-install zip && apt-get install -y sendmail libpng-dev && docker-php-ext-install gd
+          - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          # - curl -sS https://getcomposer.org/installer | php -- --check
+          - rm -rf vendor && composer update -v
+          - composer clear-cache
+          # - composer install --no-plugins --no-scripts
+          # - composer update 
+    - step:
+        image: composer:2.0
+        name: "Zip File"
+        script:
+          - zip -r training_api.zip . -x .env
+        artifacts:
+            - training_api.zip
+    - step:
+        image: atlassian/default-image:2
+        name: "Deploy to Prod"
+        script:
+          - echo "Deploy to Prod!"
+          - pipe: atlassian/aws-elasticbeanstalk-deploy:0.6.7
+            variables:
+              AWS_ACCESS_KEY_ID: 'xxxxxx'
+              AWS_SECRET_ACCESS_KEY: 'xxxxxxxx'
+              AWS_DEFAULT_REGION: 'ap-southeast-1'
+              APPLICATION_NAME: 'training-api'
+              ENVIRONMENT_NAME: 'prod'
+              ZIP_FILE: 'training_api.zip'
+              S3_BUCKET: 'elasticbeanstalk-ap-southeast-1-326859075776'
+              VERSION_LABEL: 'tis-api-source-$BITBUCKET_BUILD_NUMBER'
