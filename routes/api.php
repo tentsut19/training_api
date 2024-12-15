@@ -7,6 +7,7 @@ Route::group(['prefix' => '/v1'], function () {
 
     // ProductCategory
     Route::get('product-category', 'ProductCategoryController@index');
+    Route::get('product-category-all', 'ProductCategoryController@indexAll');
     Route::get('product-category/{id}', 'ProductCategoryController@getById');
     Route::post('product-category', 'ProductCategoryController@create');
     Route::put('product-category/{id}', 'ProductCategoryController@update');

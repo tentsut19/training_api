@@ -24,6 +24,17 @@ class ProductCategoryController extends Controller
         return response()->json($data, 200);
     }
 
+    public function indexAll()
+    {
+        $datas = ProductCategory::get(); 
+        if (isset($datas)) {
+            foreach ($datas as &$data) {
+                $data->products;
+            }
+        }
+        return response()->json($datas, 200);
+    }
+
     public function getById($id){
         $productCategory = ProductCategory::where('id', '=', $id)->first();
         return response()->json($productCategory, 200);
