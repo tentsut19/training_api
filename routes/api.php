@@ -11,6 +11,8 @@ Route::group(['prefix' => '/v1'], function () {
     Route::post('product-category', 'ProductCategoryController@create');
     Route::put('product-category/{id}', 'ProductCategoryController@update');
     Route::delete('product-category/{id}', 'ProductCategoryController@delete');
+    Route::patch('product-category/{id}', 'ProductCategoryController@softDelete');
+    Route::delete('product-category/{id}', 'ProductCategoryController@hardDelete');
 
     // Product
     Route::get('product', 'ProductController@index');

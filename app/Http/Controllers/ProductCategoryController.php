@@ -86,7 +86,7 @@ class ProductCategoryController extends Controller
         }
     }
 
-    public function delete($id)
+    public function softDelete($id)
     {
         try {
             DB::beginTransaction();
@@ -102,6 +102,34 @@ class ProductCategoryController extends Controller
             DB::commit();
             return response()->json($response, 200);
         } catch (Exception $e) {
+            DB::rollBack();
+            throw new CustomException($e->getMessage(), 500);
+        }
+    }
+
+    public function hardDelete($id)
+    {
+        try {
+            DB::beginTransaction();
+            
+            $productCategory = ProductCategory::find($id);
+
+            if (!isset($productCategory)) {
+                throw new CustomException('ProductCategory not found by id : '.$id.'.', 404, 'not_found');
+            }
+
+            DB::beginTransaction();
+
+            $productCategory->delete();
+
+            $response = [
+                'code' => 'success',
+                'data' => null
+            ];
+            DB::commit();
+            return response()->json($response, 200);
+        } catch (Exception $e) {
+            DB::rollBack();
             throw new CustomException($e->getMessage(), 500);
         }
     }
