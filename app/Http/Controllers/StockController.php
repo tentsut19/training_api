@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductCategory;
+use App\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -13,31 +13,17 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Config;
 use App\Exceptions\CustomException;
 
-class ProductCategoryController extends Controller
+class StockController extends Controller
 {
     public function index()
     {
-        $data = DB::select("SELECT pc.* 
-        FROM tb_product_category pc 
-        WHERE pc.deleted_at IS NULL ");
-
+        $data = DB::select("SELECT pc.* FROM tb_stock pc WHERE pc.deleted_at IS NULL ");
         return response()->json($data, 200);
     }
 
-    public function indexAll()
-    {
-        $datas = ProductCategory::get(); 
-        if (isset($datas)) {
-            foreach ($datas as &$data) {
-                $data->productList;
-            }
-        }
-        return response()->json($datas, 200);
-    }
-
     public function getById($id){
-        $productCategory = ProductCategory::where('id', '=', $id)->first();
-        return response()->json($productCategory, 200);
+        $stock = Stock::where('id', '=', $id)->first();
+        return response()->json($stock, 200);
     }
 
     public function create(Request $request)
@@ -46,14 +32,16 @@ class ProductCategoryController extends Controller
             $input = $request->all();
             $errorObj = [];
             $errors = array();
-            if (!isset($input['category_name'])) {
-                throw new CustomException('Please provide category_name.', 400, 'invalid_request');
+            if (!isset($input['stock_name'])) {
+                throw new CustomException('Please provide stock_name.', 400, 'invalid_request');
             }
 
             DB::beginTransaction();
-            $productCategory = new ProductCategory();
-            $productCategory->category_name = $input['category_name'];
-            $productCategory->save();
+            $xxx = new Stock();
+            $xxx->stock_code = $this->generateCode();
+            $xxx->stock_name = $input['stock_name'];
+            $xxx->created_by = 'system';
+            $xxx->save();
 
             $response = [
                 'code' => 'success',
@@ -65,6 +53,21 @@ class ProductCategoryController extends Controller
             DB::rollBack();
             throw new CustomException($e->getMessage(), 500);
         }
+    }
+
+    public function generateCode()
+    {
+        // Get the last record's ID
+        $lastRecord = Stock::latest('id')->first(); // ดึงข้อมูลที่ `id` ล่าสุด
+        $lastId = $lastRecord ? $lastRecord->id : 0;
+    
+        // Increment to the next ID
+        $nextId = $lastId + 1;
+    
+        // Format the code (pad with zeros)
+        $code = str_pad($nextId, 3, '0', STR_PAD_LEFT);
+    
+        return 'S-' . $code;
     }
 
     public function update(Request $request, $id)
@@ -73,17 +76,17 @@ class ProductCategoryController extends Controller
             $input = $request->all();
             $errorObj = [];
             $errors = array();
-            if (!isset($input['category_name'])) {
-                throw new CustomException('Please provide category_name.', 400, 'invalid_request');
+            if (!isset($input['stock_name'])) {
+                throw new CustomException('Please provide stock_name.', 400, 'invalid_request');
             }
-            $productCategory = ProductCategory::find($id);
-            if (!isset($productCategory)) {
-                throw new CustomException('productCategory not found by id : '.$id.'.', 404, 'not_found');
+            $stock = Stock::find($id);
+            if (!isset($stock)) {
+                throw new CustomException('stock not found by id : '.$id.'.', 404, 'not_found');
             }
 
             DB::beginTransaction();
-            $productCategory->category_name = $input['category_name'];
-            $productCategory->save();
+            $stock->stock_name = $input['stock_name'];
+            $stock->save();
 
             $response = [
                 'code' => 'success',
@@ -96,13 +99,14 @@ class ProductCategoryController extends Controller
             throw new CustomException($e->getMessage(), 500);
         }
     }
-
+    
+    
     public function softDelete($id)
     {
         try {
             DB::beginTransaction();
             
-            DB::select(DB::raw("UPDATE tb_product_category 
+            DB::select(DB::raw("UPDATE tb_stock 
                 SET deleted_at = CURRENT_TIMESTAMP WHERE id = :id "
                 ),["id" => $id]);
 
@@ -121,15 +125,15 @@ class ProductCategoryController extends Controller
     public function hardDelete($id)
     {
         try {
-            $productCategory = ProductCategory::find($id);
+            DB::beginTransaction();
+            
+            $stock = Stock::find($id);
 
-            if (!isset($productCategory)) {
-                throw new CustomException('ProductCategory not found by id : '.$id.'.', 404, 'not_found');
+            if (!isset($stock)) {
+                throw new CustomException('stock not found by id : '.$id.'.', 404, 'not_found');
             }
 
-            DB::beginTransaction();
-
-            $productCategory->delete();
+            $stock->delete();
 
             $response = [
                 'code' => 'success',
@@ -142,5 +146,4 @@ class ProductCategoryController extends Controller
             throw new CustomException($e->getMessage(), 500);
         }
     }
-
 }

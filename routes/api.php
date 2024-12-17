@@ -21,4 +21,12 @@ Route::group(['prefix' => '/v1'], function () {
     Route::post('product', 'ProductController@create');
     Route::put('product/{id}', 'ProductController@update');
     Route::delete('product/{id}', 'ProductController@delete');
+
+    // Stock
+    Route::get('stock', 'StockController@index');
+    Route::get('stock/{id}', 'StockController@getById');
+    Route::post('stock', 'StockController@create');
+    Route::put('stock/{id}', 'StockController@update');
+    Route::patch('stock/{id}', 'StockController@softDelete');
+    Route::delete('stock/{id}', 'StockController@hardDelete');
 });

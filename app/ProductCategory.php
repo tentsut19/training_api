@@ -8,7 +8,7 @@ class ProductCategory extends Model
 {
     protected $table ='tb_product_category';
     
-    public function products() {
+    public function productList() {
         return $this->hasMany(Product::class);
     }
 }
