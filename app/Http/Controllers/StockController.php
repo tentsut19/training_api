@@ -21,6 +21,17 @@ class StockController extends Controller
         return response()->json($data, 200);
     }
 
+    public function getAll()
+    {
+        $datas = Stock::get(); 
+        if (isset($datas)) {
+            foreach ($datas as &$data) {
+                $data->equipments;
+            }
+        }
+        return response()->json($datas, 200);
+    }
+
     public function getById($id){
         $stock = Stock::where('id', '=', $id)->first();
         return response()->json($stock, 200);
@@ -132,7 +143,7 @@ class StockController extends Controller
             if (!isset($stock)) {
                 throw new CustomException('stock not found by id : '.$id.'.', 404, 'not_found');
             }
-
+            
             $stock->delete();
 
             $response = [

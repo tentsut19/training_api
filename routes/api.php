@@ -25,9 +25,16 @@ Route::group(['prefix' => '/v1'], function () {
 
     // Stock
     Route::get('stock', 'StockController@index');
+    Route::get('stock-all', 'StockController@getAll');
     Route::get('stock/{id}', 'StockController@getById');
     Route::post('stock', 'StockController@create');
     Route::put('stock/{id}', 'StockController@update');
     Route::patch('stock/{id}', 'StockController@softDelete');
     Route::delete('stock/{id}', 'StockController@hardDelete');
+
+    // Equipment
+    Route::get('equipment', 'EquipmentController@index');
+    Route::get('equipment-all', 'EquipmentController@getAll');
+    Route::get('equipment/{id}', 'EquipmentController@getById');
+    Route::get('equipment-detail/{id}', 'EquipmentController@getByIdDetail');
 });

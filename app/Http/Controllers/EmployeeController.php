@@ -27,6 +27,9 @@ class EmployeeController extends Controller
             if ($emailToCheck) {
                 throw new CustomException('อีเมลนี้มีในระบบแล้ว', 400, 'duplicate_email');
             }
+            if(strlen($input['password']) > 8){
+                throw new CustomException('รหัสผ่านต้องไม่เกิน 8 ตัว', 400, 'duplicate_email');
+            }
 
             DB::beginTransaction();
             $emp = new Employee();
@@ -46,6 +49,9 @@ class EmployeeController extends Controller
             }
             if (isset($input['nick_name'])) {
                 $emp->nick_name = $input['nick_name'];
+            }
+            if (isset($input['role'])) {
+                $emp->role = $input['role'];
             }
             $emp->status = 'A';
             $emp->created_by = 'system';
@@ -77,7 +83,7 @@ class EmployeeController extends Controller
             $email = $input['email'];
             $password = $input['password'];
             $hashedPassword = md5($password);
-            $employee = Employee::where('email', '=', $email)->where('password', $hashedPassword)->firstOrFail();
+            $employee = Employee::where('email', '=', $email)->where('password', $hashedPassword)->firstOrFail(); // เช็ค email และ password ว่ามีอยู่ในระบบ
 
             $response = [
                 'code' => 'success',
