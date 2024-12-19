@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => '/v1'], function () {
     Route::post('login', 'EmployeeController@login');
+    Route::post('register', 'EmployeeController@register');
 
     // ProductCategory
     Route::get('product-category', 'ProductCategoryController@index');

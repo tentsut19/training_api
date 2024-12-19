@@ -8,6 +8,7 @@ CREATE TABLE tb_employee (
   email varchar(100) NOT NULL,
   password VARCHAR(255),
   status VARCHAR(1) COMMENT 'A = active, I = inactive',
+  role VARCHAR(10) COMMENT 'ADMIN,USER',
   deleted_at datetime,
   created_by varchar(80),
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
