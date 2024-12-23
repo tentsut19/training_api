@@ -37,4 +37,7 @@ Route::group(['prefix' => '/v1'], function () {
     Route::get('equipment-all', 'EquipmentController@getAll');
     Route::get('equipment/{id}', 'EquipmentController@getById');
     Route::get('equipment-detail/{id}', 'EquipmentController@getByIdDetail');
+    Route::get('equipment-export-excel', 'EquipmentController@exportExcel');
+    Route::get('equipment-export-pdf-preview', 'EquipmentController@previewPDF');
+    Route::get('equipment-export-pdf', 'EquipmentController@createPDF');
 });

@@ -76,67 +76,70 @@
                     <thead class="bg-header-table">
                             <tr style="border: 1px solid #000000">
                                 <td style="padding-left:10px;border: 1px solid #000000;
-                                vertical-align:top;font-weight:bold;text-align:center;width:15%">
-                                    รหัสอุปกรณ์ (IMEI)
-                                </td> 
-                                <td style="padding-left:10px;border: 1px solid #000000;
-                                vertical-align:top;font-weight:bold;text-align:center;width:15%">
-                                    ชื่ออุปกรณ์
+                                vertical-align:top;font-weight:bold;text-align:center;width:10%">
+                                    รหัสอุปกรณ์
                                 </td> 
                                 <td style="padding-left:10px;border: 1px solid #000000;
                                 vertical-align:top;font-weight:bold;text-align:center;width:20%">
-                                    หน่วยงาน
-                                </td> 
-                                <td style="padding-left:10px;border: 1px solid #000000;
-                                vertical-align:top;font-weight:bold;text-align:center;width:30%">
-                                    รายละเอียดเพิ่มเติม
+                                    ชื่ออุปกรณ์
                                 </td> 
                                 <td style="padding-left:10px;border: 1px solid #000000;
                                 vertical-align:top;font-weight:bold;text-align:center;width:10%">
-                                    สถานะ
+                                    จำนวน
                                 </td> 
                                 <td style="padding-left:10px;border: 1px solid #000000;
                                 vertical-align:top;font-weight:bold;text-align:center;width:10%">
+                                    ราคาต้นทุน
+                                </td> 
+                                <td style="padding-left:10px;border: 1px solid #000000;
+                                vertical-align:top;font-weight:bold;text-align:center;width:10%">
+                                    ราคาขาย
+                                </td>
+                                <td style="padding-left:10px;border: 1px solid #000000;
+                                vertical-align:top;font-weight:bold;text-align:center;width:20%">
                                     วันที่สร้าง
+                                </td> 
+                                <td style="padding-left:10px;border: 1px solid #000000;
+                                vertical-align:top;font-weight:bold;text-align:center;width:20%">
+                                    วันที่แก้ไขล่าสุด
                                 </td> 
                             </tr>
                     </thead>
                         <tbody>
-                        <?php if(count($data) == 0){ ?>  
+                        <?php if(count($datas) == 0){ ?>  
                             <tr style="border: 1px solid #000000">
-                                <td colspan="6" style="text-align:center">--- ไม่พบข้อมูล ---</td>
+                                <td colspan="7" style="text-align:center">--- ไม่พบข้อมูล ---</td>
                             </tr>
                         <?php }else{ ?>
-                            @foreach ($data as $item)
+                            @foreach ($datas as $item)
                         <tr style="border: 1px solid #000000">
                                 <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:center;
                                 padding-top:10px;padding-bottom:10px;">
-                                 <span style="font-weight:bold">{{$item['imei']}}</span>
+                                 <span style="font-weight:bold">{{$item['equipment_code']}}</span>
                                 </td>
                                 <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:left;
                                 padding-top:10px;padding-bottom:10px;">
-                                 <span style="padding-left:5px">{{$item['name']}}</span>
+                                 <span style="padding-left:5px">{{$item['equipment_name']}}</span>
                                 </td>
-                                <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:left;
+                                <td style="padding-right:10px;border: 1px solid #000000;vertical-align:center;text-align:right;
                                 padding-top:10px;padding-bottom:10px;">
-                                 <span style="padding-left:5px">{{$item['agency_name']}}</span>
+                                 <span style="padding-right:5px">{{$item['quantity']}}</span>
                                 </td>
-                                <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:left;
+                                <td style="padding-right:10px;border: 1px solid #000000;vertical-align:center;text-align:right;
                                 padding-top:10px;padding-bottom:10px;">
-                                 <span style="padding-left:3px">{{$item['description']}}</span>
+                                 <span style="padding-right:5px">{{$item['cost_price']}}</span>
                                 </td>
-                                <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:center;
+                                <td style="padding-right:10px;border: 1px solid #000000;vertical-align:center;text-align:right;
                                 padding-top:10px;padding-bottom:10px;">
-                                    <?php if($item['is_active'] == "1" || $item['is_active'] == true){ ?>
-                                        <span style="color:green;font-weight:bold">เปิดใช้งาน</span>
-                                    <?php } ?>
-                                    <?php if($item['is_active'] == "0" || $item['is_active'] == false){ ?>
-                                        <span style="color:red;font-weight:bold">ปิดใช้งาน</span>
-                                    <?php } ?>
+                                 <span style="padding-right:3px">{{$item['selling_price']}}</span>
                                 </td>
                                 <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:center;
                                 padding-top:10px;padding-bottom:10px;">
                                  <span>{{$item['created_at']}}</span>
+                                </td>
+                                <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:center;
+                                padding-top:10px;padding-bottom:10px;">
+                                 <span>{{$item['updated_time']}}</span>
                                 </td>
                             </tr> 
                         @endforeach
