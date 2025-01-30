@@ -71,11 +71,31 @@ class EquipmentController extends Controller
             foreach ($datas as &$data) {
                 if (isset($data->updated_at)) {
                     $dateTime = new \DateTime($data->updated_at);
-                    $data->updated_time = $dateTime->format("d-M-Y H:i:s");
+                    $data->updated_time = $dateTime->format("d-m-Y");
                 }
             }
         }
-        return view('equipment-template', ['datas' => $datas]);
+
+        $equipment = Equipment::where('id', '=', 1)->first();
+
+        return view('equipment-template', ['datas' => $datas, 'eq1' =>  $equipment,'title' => 'Test PDF V1']);
+    }
+
+    public function previewPDFV2()
+    {
+        $datas = Equipment::where('deleted_at', '=', null)->get();
+        if (isset($datas)) {
+            foreach ($datas as &$data) {
+                if (isset($data->updated_at)) {
+                    $dateTime = new \DateTime($data->updated_at);
+                    $data->updated_time = $dateTime->format("d-m-Y");
+                }
+            }
+        }
+
+        $equipment = Equipment::where('id', '=', 1)->first();
+
+        return view('template', ['datas' => $datas, 'eq1' =>  $equipment,'title' => 'Test PDF V1']);
     }
     
     public function createPDF()
@@ -89,8 +109,8 @@ class EquipmentController extends Controller
                 }
             }
         }
-
-        $pdf = PDF::loadView('equipment-template', ['datas' => $datas]);
+        $equipment = Equipment::where('id', '=', 1)->first();
+        $pdf = PDF::loadView('equipment-template', ['datas' => $datas, 'eq1' =>  $equipment,'title' => 'Test PDF V1']);
         $pdf->setPaper('A4');
         // download PDF file with download method
         return $pdf->stream();

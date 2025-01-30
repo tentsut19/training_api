@@ -30,7 +30,12 @@ class EquipmentExport implements FromCollection, WithHeadings, WithEvents {
     {
         
         $styleArray = [
-            
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'], // เส้นสีดำ
+                ],
+            ],
         ];
 
         return [
@@ -41,7 +46,7 @@ class EquipmentExport implements FromCollection, WithHeadings, WithEvents {
                 foreach ($this->dataList as $r) {
                     $no++;
                 }
-
+                
                 $cellRange = 'A1:F'.$no;
 
                 $event->sheet->getDelegate()->getColumnDimension('A')->setWidth(10);
@@ -59,7 +64,15 @@ class EquipmentExport implements FromCollection, WithHeadings, WithEvents {
                         ],
                     ],
                 ]);
-
+                $event->sheet->getDelegate()->getStyle($cellRange)->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['argb' => '000000'], // เส้นสีดำ
+                        ],
+                    ],
+                ]);
+                // $event->sheet->getDelegate()->getStyle($cellRange)->applyFromArray($styleArray);
             },
         ];
     }

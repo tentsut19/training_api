@@ -81,6 +81,21 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 composer install
 
+rename .env.example -> .env
+
+APP_NAME=Training
+APP_ENV=local
+APP_KEY=base64:jD6DcIhXDzNqh26TGv/TLoMz17rLCwVtBbTJTdWtoLo=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=guard-walk-backup.c1w2uwaeybph.ap-southeast-1.rds.amazonaws.com
+DB_PORT=3306
+DB_DATABASE=training_db
+DB_USERNAME=root
+DB_PASSWORD=guardwalk2024
+
 php artisan key:generate
 
 php artisan cache:clear

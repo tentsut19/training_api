@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>รายการอุปกรณ์</title>
+    <title>{{$eq1['equipment_code']}}</title>
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
     <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -56,7 +56,7 @@
             background-color:#b0e4fb
         }
         .bg-header-table{
-            background-color:#dbdbdb !important;
+            background-color:#e79e9e !important;
         }
     </style>
 </head>
@@ -66,7 +66,7 @@
         <tbody>
             <tr>
                 <td colspan="3" style="text-align:center">
-                    <h2>รายการอุปกรณ์</h2>
+                    <h2>รายการอุปกรณ์ {{$title}} || {{$eq1['equipment_name']}}</h2>
                 </td>
             </tr>  
         </tbody>
@@ -102,6 +102,10 @@
                                 <td style="padding-left:10px;border: 1px solid #000000;
                                 vertical-align:top;font-weight:bold;text-align:center;width:20%">
                                     วันที่แก้ไขล่าสุด
+                                </td> 
+                                <td style="padding-left:10px;border: 1px solid #000000;
+                                vertical-align:top;font-weight:bold;text-align:center;width:20%">
+                                    รูป
                                 </td> 
                             </tr>
                     </thead>
@@ -140,6 +144,10 @@
                                 <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:center;
                                 padding-top:10px;padding-bottom:10px;">
                                  <span>{{$item['updated_time']}}</span>
+                                </td>
+                                <td style="padding-left:10px;border: 1px solid #000000;vertical-align:center;text-align:center;
+                                padding-top:10px;padding-bottom:10px;">
+                                 <img style="width: 150px" src="https://comvisitor-uat-bucket.s3-ap-southeast-1.amazonaws.com/images/photo_position_1/2024-12-23/2024-12-23_013036tPWlHv87LuhskiC.jpeg">
                                 </td>
                             </tr> 
                         @endforeach
