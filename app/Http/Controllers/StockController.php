@@ -111,7 +111,6 @@ class StockController extends Controller
         }
     }
     
-    
     public function softDelete($id)
     {
         try {

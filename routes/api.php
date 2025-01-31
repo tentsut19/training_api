@@ -37,6 +37,10 @@ Route::group(['prefix' => '/v1'], function () {
     Route::get('equipment-all', 'EquipmentController@getAll');
     Route::get('equipment/{id}', 'EquipmentController@getById');
     Route::get('equipment-detail/{id}', 'EquipmentController@getByIdDetail');
+    Route::post('equipment', 'EquipmentController@create');
+    Route::put('equipment/{id}', 'EquipmentController@update');
+    Route::patch('equipment/{id}', 'EquipmentController@softDelete');
+    Route::delete('equipment/{id}', 'EquipmentController@hardDelete');
     Route::get('equipment-export-excel', 'EquipmentController@exportExcel');
     Route::get('equipment-export-pdf-preview', 'EquipmentController@previewPDF');
     Route::get('equipment-export-pdf-preview-v2', 'EquipmentController@previewPDFV2');
