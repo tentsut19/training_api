@@ -127,7 +127,7 @@ MAIL_PASSWORD=twledhndpmwzgnwi
 ## Generating a new SSH key
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh
-
+jack
 $ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 
