@@ -107,7 +107,7 @@ php artisan jwt:secret
 ## Run composer case error PHP Fatal error:  Allowed memory size of 1610612736 bytes...
 
 COMPOSER_MEMORY_LIMIT=-1 composer update
-
+natsu
 ## Laravel Start
 
 php artisan serve
