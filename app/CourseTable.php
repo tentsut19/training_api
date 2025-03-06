@@ -8,7 +8,7 @@ class CourseTable extends Model
 {
     protected $table ='course_table';
 
-    public function userTable() {
-        return $this->belongsTo(UserTable::class);
+    public function teacher() {
+        return $this->belongsTo(UserTable::class,'teacher_id');
     }
 }

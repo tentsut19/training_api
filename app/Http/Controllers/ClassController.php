@@ -19,9 +19,15 @@ class ClassController extends Controller
     public function index()
     {
         $datas = ClassTable::where('deleted_at', null)->get(); 
+        return response()->json($datas, 200);
+    }
+    public function getAll()
+    {
+        $datas = ClassTable::where('deleted_at', null)->get(); 
         if (isset($datas)) {
             foreach ($datas as &$data) {
-                $data->detail;
+                $data->students;
+                $data->course;
             }
         }
         return response()->json($datas, 200);
@@ -29,6 +35,13 @@ class ClassController extends Controller
 
     public function getById($id){
         $class = ClassTable::where('id', '=', $id)->first();
+        return response()->json($class, 200);
+    }
+
+    public function getByIdDetail($id){
+        $class = ClassTable::where('id', '=', $id)->first();
+        $class->students;
+        // $class->course;
         return response()->json($class, 200);
     }
 

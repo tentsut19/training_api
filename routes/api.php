@@ -53,13 +53,17 @@ Route::group(['prefix' => '/v1'], function () {
     Route::post('register-1', 'UserController@register');
 
     Route::get('course-teacher', 'CourseTablecontroller@index');
+    Route::get('course-teacher-all', 'CourseTablecontroller@getAll');
     Route::get('course-teacher/{id}', 'CourseTablecontroller@getById');
+    Route::get('course-teacher-detail/{id}', 'CourseTablecontroller@getByIdDetail');
     Route::post('course-teacher', 'CourseTablecontroller@create');
     Route::put('course-teacher/{id}', 'CourseTablecontroller@update');
     Route::patch('course-teacher/{id}', 'CourseTablecontroller@softDelete');
 
     Route::get('class-student', 'ClassController@index');
+    Route::get('class-student-all', 'ClassController@getAll');
     Route::get('class-student/{id}', 'ClassController@getById');
+    Route::get('class-student-detail/{id}', 'ClassController@getByIdDetail');
     Route::post('class-student', 'ClassController@create');
     Route::put('class-student/{id}', 'ClassController@update');
     Route::patch('class-student/{id}', 'ClassController@softDelete');

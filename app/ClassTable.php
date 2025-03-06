@@ -8,10 +8,10 @@ class ClassTable extends Model
 {
     protected $table ='class_table';
 
-    public function userTable() {
-        return $this->hasMany(UserTable::class);
+    public function students(){
+        return $this->belongsTo(UserTable::class,'student_id');
     }
-    public function courseTable() {
-        return $this->belongsTo(CourseTable::class);
+    public function course(){
+        return $this->belongsTo(CourseTable::class,'course_id');
     }
 }
