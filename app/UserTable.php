@@ -9,5 +9,6 @@ use App\Agency;
 class UserTable extends Model
 {
     protected $table = 'user_table';
+    public $timestamps = false;
 
 }
