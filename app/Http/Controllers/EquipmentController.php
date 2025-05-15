@@ -232,6 +232,7 @@ class EquipmentController extends Controller
         return view('template', ['datas' => $datas, 'eq1' =>  $equipment,'title' => 'Test PDF V1']);
     }
     
+
         public function previewPDFV3()
     {
         $datas = Equipment::where('deleted_at', '=', null)->get();
@@ -248,6 +249,7 @@ class EquipmentController extends Controller
 
         return view('template', ['datas' => $datas, 'eq1' =>  $equipment,'title' => 'Test PDF V1']);
     }
+
 
     public function createPDF()
     {
@@ -266,6 +268,7 @@ class EquipmentController extends Controller
         // download PDF file with download method
         return $pdf->stream();
     }
+
 
     public function createPDFV2(Request $request)
     {
@@ -286,4 +289,5 @@ class EquipmentController extends Controller
         // download PDF file with download method
         return $pdf->stream();
     }
+
 }

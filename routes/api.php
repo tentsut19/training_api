@@ -44,16 +44,21 @@ Route::group(['prefix' => '/v1'], function () {
     Route::get('equipment-export-excel', 'EquipmentController@exportExcel');
     Route::get('equipment-export-pdf-preview', 'EquipmentController@previewPDF');
     Route::get('equipment-export-pdf-preview-v2', 'EquipmentController@previewPDFV2');
+
     Route::post('equipment-export-pdf-preview-v3', 'EquipmentController@previewPDFV3');
     Route::get('equipment-export-pdf', 'EquipmentController@createPDF');
 
     Route::post('equipment-export-pdf-v2', 'EquipmentController@createPDFV2');
 
 
+    Route::get('equipment-export-pdf', 'EquipmentController@createPDF');
+
+
     // Work_shop_Register&Login
 
     Route::post('login-1', 'UserController@login');
     Route::post('register-1', 'UserController@register');
+
 
 
 
