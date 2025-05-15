@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
-
+## Tent1
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -74,12 +74,27 @@ In order to ensure that the Laravel community is welcoming to all, please review
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
-
+## NEW Test 888
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Run pre Start
-
+test-por
 composer install
+
+rename .env.example -> .env
+
+APP_NAME=Training
+APP_ENV=local
+APP_KEY=base64:jD6DcIhXDzNqh26TGv/TLoMz17rLCwVtBbTJTdWtoLo=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=guard-walk-backup.c1w2uwaeybph.ap-southeast-1.rds.amazonaws.com
+DB_PORT=3306
+DB_DATABASE=training_db
+DB_USERNAME=root
+DB_PASSWORD=guardwalk2024
 
 php artisan key:generate
 
@@ -92,7 +107,7 @@ php artisan jwt:secret
 ## Run composer case error PHP Fatal error:  Allowed memory size of 1610612736 bytes...
 
 COMPOSER_MEMORY_LIMIT=-1 composer update
-
+natsu
 ## Laravel Start
 
 php artisan serve
@@ -112,6 +127,14 @@ MAIL_PASSWORD=twledhndpmwzgnwi
 ## Generating a new SSH key
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh
-
+jack
 $ ssh-keygen -t ed25519 -C "your_email@example.com"
 
+
+## docs.laravel-excel
+
+https://docs.laravel-excel.com/2.1/getting-started/
+
+Hello test Natsu
+xxxxx
+test

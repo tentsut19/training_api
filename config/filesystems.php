@@ -57,10 +57,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID', 'xxxxxxx'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY', 'xxxxxxxx'),
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION', 'ap-southeast-1'),
-            'bucket' => env('AWS_BUCKET', 'xxx-bucket'),
+            'bucket' => env('AWS_BUCKET', 'comvisitor-dev-bucket'),
             'scheme'  => 'http'
             // 'url' => env('AWS_URL', 'https://s3.amazonaws.com/'),
         ],
